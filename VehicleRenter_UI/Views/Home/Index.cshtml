@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="card h-100">
+    <div class="row row-cols-1 row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-xs-1  g-4" id="app">
+    </div>
+    <div class="card-footer">
+      
+    </div>
+</div>
+
+    <script>
+
+        var loggedUserDeputies = [];
+        $(function () {
+            GetData();
+        });
+        function GetData() {
+            $.ajax({
+                url: 'weatherforecast',
+                dataType: 'json',
+                success: function (data) {
+                    loggedUserDeputies = data.result;
+                    $.each(loggedUserDeputies, function (i, item) {
+                        var a = '<div class="col"> <div class="card h-100">' +
+                            '<img src="https://mdbootstrap.com/img/new/standard/city/041.jpg" class="card-img-top" style="height:128px;">' +
+                            '<div class="card-body"><h5 class="card-title">Card title</h5>' +
+                            '<p class="card-text fs-6" >Some quick example text to build on the card title and make up the bulk of the cards content.</p>' +
+                            '</div><div class="card-footer text-center">' +
+                            '<button type="button" class="btn btn-info btn-floating" data-mdb-ripple-color="dark"><i class="fas fa-eye"></i></button> ' +
+                            '<button type="button" class="btn btn-danger btn-floating"><i class="fas fa-magic"></i></button> ' +
+                            '<button type="button" class="btn btn-dark btn-floating"><i class="fab fa-apple"></i></button> ' +
+                            '</div></div></div>';
+                        $('#app').append(a);
+                    });
+
+                },
+                error: function (jqXhr, textStatus, errorMessage) {
+
+                }
+            });
+        }
+
+
+    </script>
